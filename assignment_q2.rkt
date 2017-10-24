@@ -15,6 +15,8 @@
 (provide ins_end)
 (provide count_top_level)
 (provide count_instances)
+(provide count_instances_tr)
+(provide count_instances_deep)
 
 ;A
 (define (ins_beg el lst)
@@ -35,5 +37,24 @@
   (cond [(null? lst) 0]
         [(equal? item (car lst)) (+ 1 (count_instances item (cdr lst)))]
         [else (count_instances item (cdr lst))]))
+
+;E
+(define (count_instances_tr item lst)
+  (helper_count_instances_tr item lst 0))
+ 
+
+(define (helper_count_instances_tr item lst count)
+  (cond [(empty? lst) count]
+        [(equal? item (car lst)) (helper_count_instances_tr item (cdr lst) (+ 1 count))]
+        [else (helper_count_instances_tr item (cdr lst) count)]))
+
+
+;F
+(define (count_instances_deep item lst)
+  (cond [(empty? lst) 0]
+        [(list? (car lst))
+         (+ (count_instances_deep item (car lst)) (count_instances_deep item (cdr lst)))]
+        [(equal? item (car lst)) (+ 1 (count_instances_deep item (cdr lst)))]
+[else (count_instances_deep item (cdr lst))]))
 
 
