@@ -26,8 +26,15 @@
 (define (ins_end el lst)
  (append lst (list el)))
 
+
+
+;Create Lists for testing 
+(define list1 (list 3 4 5 1 5 5))
+(define list2 (list 2 1 '(2 4)))
+
+
 ;C
-(define (count_top_level lst)
+(define (count_top_level lst) ;Was unsure if cout was  mistake i presumed cout is supposed to be count
  (if (null? lst)
       0
       (+ 1 (count_top_level (cdr lst)))))
@@ -37,6 +44,8 @@
   (cond [(null? lst) 0]
         [(equal? item (car lst)) (+ 1 (count_instances item (cdr lst)))]
         [else (count_instances item (cdr lst))]))
+
+
 
 ;E
 (define (count_instances_tr item lst)
